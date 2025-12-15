@@ -166,6 +166,7 @@ export function SearchButton() {
       <Button
         variant="ghost"
         size="icon"
+        aria-label="Search"
         onClick={() => {
           playClick(0.5);
           setOpen(true);

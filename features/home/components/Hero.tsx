@@ -103,6 +103,8 @@ export default function Hero({
             <source media="(max-width: 1023px)" srcSet={mobileSrcSet} />
             <img
               {...restDesktop}
+              fetchPriority="high"
+              decoding="async"
               className="h-auto w-full object-cover lg:h-full"
             />
           </picture>
