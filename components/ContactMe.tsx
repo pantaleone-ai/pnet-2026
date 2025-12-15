@@ -53,7 +53,6 @@ const ContactMe = ({
           width={400}
           height={400}
           className="z-10 h-96 w-full rounded-2xl object-cover lg:aspect-square lg:h-auto lg:max-w-sm"
-          unoptimized
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
         />
       </div>

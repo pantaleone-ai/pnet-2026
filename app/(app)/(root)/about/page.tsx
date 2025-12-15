@@ -76,7 +76,6 @@ export default async function AboutMePage() {
             width={1000}
             height={500}
             className="h-auto max-h-96 w-full object-cover"
-            unoptimized
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1000px"
           />
         </div>

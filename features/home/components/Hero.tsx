@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import { Button } from "@/components/ui/button";
 import { SKILLS } from "@/features/home/data/skills";
 import { cn } from "@/lib/utils";
@@ -73,40 +73,46 @@ export default function Hero({
   imageSrcMobile,
   imageAlt,
 }: HeroProps) {
+  const common = { alt: imageAlt, priority: true };
+  
+  const {
+    props: { srcSet: desktopSrcSet, ...restDesktop },
+  } = getImageProps({
+    ...common,
+    width: 1000,
+    height: 1000,
+    src: imageSrcDesktop,
+  });
+
+  const {
+    props: { srcSet: mobileSrcSet },
+  } = getImageProps({
+    ...common,
+    width: 1000,
+    height: 500,
+    src: imageSrcMobile,
+  });
+
   return (
-    <>
-      {/* Desktop Layout */}
-      <div className="hidden lg:block max-w-5xl mx-auto p-8">
-        <div className="grid grid-cols-2 gap-x-6 border border-dashed border-border-edge">
-          <div className="col-span-1">
-            <Image
-              alt={imageAlt}
-              src={imageSrcDesktop}
-              width={1000}
-              height={1000}
-              className="h-full w-full object-cover"
-              priority
-              unoptimized
+    <div className="mx-auto max-w-5xl lg:p-8">
+      <div className="flex flex-col border-border-edge lg:grid lg:grid-cols-2 lg:gap-x-6 lg:border lg:border-dashed">
+        {/* Image Section */}
+        <div className="w-full lg:col-span-1">
+          <picture>
+            <source media="(min-width: 1024px)" srcSet={desktopSrcSet} />
+            <source media="(max-width: 1023px)" srcSet={mobileSrcSet} />
+            <img
+              {...restDesktop}
+              className="h-auto w-full object-cover lg:h-full"
             />
-          </div>
-          <div className="col-span-1 flex items-center border-l border-dashed border-border-edge">
-            <HeroContent />
-          </div>
+          </picture>
+        </div>
+
+        {/* Content Section */}
+        <div className="lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-border-edge">
+          <HeroContent />
         </div>
       </div>
-
-      {/* Mobile Layout */}
-      <div className="relative mx-auto flex flex-col lg:hidden">
-        <Image
-          alt={imageAlt}
-          src={imageSrcMobile}
-          width={1000}
-          height={500}
-          className="w-full"
-          priority
-        />
-        <HeroContent />
-      </div>
-    </>
+    </div>
   );
 }

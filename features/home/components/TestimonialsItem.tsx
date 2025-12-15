@@ -37,6 +37,7 @@ export default memo(function TestimonialItem({
       ) : (
         <iframe
           suppressHydrationWarning
+          loading="lazy"
           key={`${item.url}-${index}`}
           src={item.url}
           className="aspect-video w-full rounded-xl"
