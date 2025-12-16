@@ -79,7 +79,7 @@ export function getBlogPosts(): BlogPostType[] {
       body: data.body,
       content: contentStr,
       readingTime: readingTimeStats.text,
-      readingTimeMinutes: readingTimeStats.minutes,
+      readingTimeMinutes: Math.round(readingTimeStats.minutes),
       slug,
     };
   });

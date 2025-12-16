@@ -12,8 +12,10 @@ interface Props {
   showProgressBar?: boolean;
 }
 
-const SiteHeader: FC<Props> = ({ showProgressBar = false }) => {
+const SiteHeader: FC<Props> = () => {
   const path = usePathname();
+  const showProgressBar = path?.startsWith("/blog/post/");
+
   const { scrollY } = useScroll();
 
   const [affix, setAffix] = useState(false);

@@ -39,7 +39,7 @@ export default async function BlogPage() {
     <>
       <SeparatorHorizontal borderTop={false} />
       <HeadingTitle
-        title="BLOG"
+        title="Blog"
         textStyleClassName="text-2xl font-bold sm:text-3xl"
       />
       <SeparatorHorizontal short={true} />

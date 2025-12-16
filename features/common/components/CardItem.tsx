@@ -12,7 +12,7 @@ import type { ProjectType } from "@/features/projects/types/ProjectType";
 import CalendarIcon from "@/features/common/icons/calendar-icon";
 import DateIcon from "@/features/common/icons/date-icon";
 import ReadingTimeIcon from "@/features/common/icons/reading-time-icon";
-import { formatDate, slugify } from "@/lib/helpers";
+import { formatDate } from "@/lib/helpers";
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon, UserIcon } from "lucide-react";
 import Image from "next/image";
@@ -84,7 +84,6 @@ const SideBorder = ({ position }: { position: "left" | "right" }) => (
 );
 
 const CoverImage = ({
-  index,
   imageUrl,
   imageAlt,
   href,
