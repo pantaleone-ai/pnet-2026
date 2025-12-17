@@ -30,11 +30,31 @@ Check out the live site: [hiretimsf.com](https://hiretimsf.com)
 
 ### Getting Started
 
-```bash
-# Install dependencies
-npm install
+1. **Clone the repository**
 
-# Start development server
+```bash
+git clone https://github.com/hiretimsf/hiretimsf.com.git
+cd hiretimsf.com
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Set up environment variables**
+
+```bash
+# Copy the template file
+cp env.template .env.local
+
+# Edit .env.local with your API keys
+```
+
+4. **Start development server**
+
+```bash
 npm run dev
 ```
 
@@ -42,14 +62,19 @@ The site will be available at [http://localhost:1408](http://localhost:1408).
 
 ### Scripts
 
-| Command                | Description                  |
-| ---------------------- | ---------------------------- |
-| `npm run dev`          | Start development server     |
-| `npm run build`        | Build for production         |
-| `npm run start`        | Start production server      |
-| `npm run preview`      | Build and preview production |
-| `npm run lint`         | Run ESLint                   |
-| `npm run format:write` | Format code with Prettier    |
+| Command                 | Description                     |
+| ----------------------- | ------------------------------- |
+| `npm run dev`           | Start development server        |
+| `npm run build`         | Build for production            |
+| `npm run start`         | Start production server         |
+| `npm run preview`       | Build and preview production    |
+| `npm run lint`          | Run ESLint                      |
+| `npm run lint:fix`      | Fix ESLint errors               |
+| `npm run format:write`  | Format code with Prettier       |
+| `npm run format:check`  | Check code formatting           |
+| `npm run check-types`   | Type-check with TypeScript      |
+| `npm run validate-seo`  | Validate SEO configuration      |
+| `npm run audit`         | Check for security issues       |
 
 ## License
 

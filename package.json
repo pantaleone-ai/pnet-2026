@@ -22,15 +22,16 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
-    "format": "biome format --write",
     "preview": "next build && next start",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "check-types": "tsc --noEmit --pretty",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "validate-seo": "tsx scripts/validate-seo.ts",
+    "audit": "npm audit --audit-level=high",
     "upgrade:next": "npx @next/codemod@latest upgrade latest",
     "upgrade:tailwind": "npx @tailwindcss/upgrade@latest",
     "prepare": "husky"
@@ -73,7 +74,6 @@
     "cmdk": "^1.1.1",
     "country-flag-icons": "^1.6.4",
     "date-fns": "^4.1.0",
-    "dayjs": "^1.11.19",
     "embla-carousel": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "feed": "^5.1.0",
@@ -110,7 +110,6 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.8",
     "@eslint/eslintrc": "^3.3.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@tailwindcss/postcss": "^4",

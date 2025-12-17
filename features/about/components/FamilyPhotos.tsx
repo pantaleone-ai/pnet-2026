@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils";
 import { FAMILY_PHOTOS } from "../data/family-photos";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Image from "next/image";
-import * as React from "react";
 
 export default function FamilyPhotos() {
   return (

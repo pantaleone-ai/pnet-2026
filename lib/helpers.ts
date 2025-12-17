@@ -33,16 +33,19 @@ export function formatDate(date: string, formatStr: string = "MMM d, yyyy") {
 }
 
 export function parseDate(dateStr?: string): number {
-  if (!dateStr) return 0;
-  // Split by hyphen, en dash, or em dash with surrounding spaces
-  const parts = dateStr.split(/\s+[–—-]\s+/);
-  const endDate = parts[parts.length - 1].trim();
+	if (!dateStr) return 0;
+	// Split by hyphen, en dash, or em dash with surrounding spaces
+	const parts = dateStr.split(/\s+[–—-]\s+/);
+	const lastPart = parts[parts.length - 1];
+	const endDate = lastPart?.trim();
 
-  if (endDate.toLowerCase().includes("present")) {
-    return new Date().getTime();
-  }
-  const timestamp = new Date(endDate).getTime();
-  return isNaN(timestamp) ? 0 : timestamp;
+	if (!endDate) return 0;
+
+	if (endDate.toLowerCase().includes("present")) {
+		return new Date().getTime();
+	}
+	const timestamp = new Date(endDate).getTime();
+	return isNaN(timestamp) ? 0 : timestamp;
 }
 
 /**
@@ -50,15 +53,16 @@ export function parseDate(dateStr?: string): number {
  * This determines the sorting order of the experience.
  */
 export function getMostRecentDate(
-  positions: Array<{ employmentPeriod: string }>,
+	positions: Array<{ employmentPeriod: string }>,
 ): Date {
-  const timestamps = positions
-    .map((pos) => parseDate(pos.employmentPeriod))
-    .filter((timestamp) => timestamp !== 0);
+	const timestamps = positions
+		.map((pos) => parseDate(pos.employmentPeriod))
+		.filter((timestamp) => timestamp !== 0);
 
-  if (timestamps.length === 0) return new Date(0); // Fallback for no dates
+	if (timestamps.length === 0) return new Date(0); // Fallback for no dates
 
-  // Sort descending to get the latest date first
-  timestamps.sort((a, b) => b - a);
-  return new Date(timestamps[0]);
+	// Sort descending to get the latest date first
+	timestamps.sort((a, b) => b - a);
+	const mostRecent = timestamps[0];
+	return new Date(mostRecent ?? 0);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState } from "react";
+import { memo, useState, useCallback, useEffect, useRef } from "react";
 import { Tweet } from "react-tweet";
 import type { TestimonialType } from "@/features/home/types/TestimonialType";
 import YouTubeEmbed from "@/features/home/components/YouTubeEmbed";
@@ -22,6 +22,26 @@ export default memo(function TestimonialItem({
   index,
 }: TestimonialItemProps) {
   const [hasError, setHasError] = useState(false);
+  const isMountedRef = useRef(false);
+
+  // Track component mounted state
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  // Defer state update to prevent setState-in-render error
+  // The Tweet component may call onError during render, so we use setTimeout
+  // to schedule the state update for after the current render completes
+  const handleError = useCallback(() => {
+    setTimeout(() => {
+      if (isMountedRef.current) {
+        setHasError(true);
+      }
+    }, 0);
+  }, []);
 
   if (hasError) {
     return (
@@ -34,7 +54,7 @@ export default memo(function TestimonialItem({
   return (
     <div key={`${item.type}-${index}`} className="rounded-xl">
       {isTweetShoutout(item) ? (
-        <Tweet id={item.id} onError={() => setHasError(true)} />
+        <Tweet id={item.id} onError={handleError} />
       ) : item.url ? (
         <div className="aspect-video w-full rounded-xl overflow-hidden">
           <YouTubeEmbed

@@ -2,31 +2,63 @@
 import {
   defineCollections,
   defineDocs,
-  defineConfig,
-  frontmatterSchema
+  defineConfig
 } from "fumadocs-mdx/config";
-import { z } from "zod";
 import lastModified from "fumadocs-mdx/plugins/last-modified";
+
+// config/schemas/base-schemas.ts
+import { z } from "zod";
+import { frontmatterSchema } from "fumadocs-mdx/config";
+var baseProjectSchema = frontmatterSchema.extend({
+  title: z.string(),
+  description: z.string(),
+  category: z.string(),
+  fromDate: z.string(),
+  toDate: z.string(),
+  imageUrl: z.string().optional(),
+  imageAlt: z.string().optional(),
+  featured: z.boolean(),
+  showOnPortfolio: z.boolean().default(true),
+  websiteUrl: z.string().optional(),
+  githubUrl: z.string().optional(),
+  videoEmbedUrl: z.string().optional(),
+  videoEmbedAlt: z.string().optional(),
+  techStacks: z.array(z.string()).optional()
+});
+var blogPostSchema = frontmatterSchema.extend({
+  title: z.string(),
+  description: z.string(),
+  created: z.string(),
+  lastUpdated: z.string().optional(),
+  image: z.string(),
+  imageAlt: z.string().optional(),
+  author: z.string().optional(),
+  authorAvatar: z.string().optional(),
+  authorAvatarAlt: z.string().optional(),
+  category: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  seo: z.array(z.string()).optional()
+});
+var privacySchema = frontmatterSchema.extend({
+  title: z.string(),
+  description: z.string().optional(),
+  lastModified: z.union([z.string(), z.number(), z.date()]).optional()
+});
+var changelogSchema = frontmatterSchema.extend({
+  title: z.string(),
+  description: z.string(),
+  created: z.string()
+});
+
+// source.config.ts
 var featuredApps = defineDocs({
   dir: "features/home/content/featured-apps",
   docs: defineCollections({
     type: "doc",
     dir: "features/home/content/featured-apps",
-    schema: frontmatterSchema.extend({
-      title: z.string(),
-      description: z.string(),
-      category: z.string(),
-      fromDate: z.string(),
-      toDate: z.string(),
-      imageUrl: z.string(),
-      imageAlt: z.string(),
-      featured: z.boolean(),
-      showOnPortfolio: z.boolean().default(true),
-      websiteUrl: z.string().optional(),
-      githubUrl: z.string().optional(),
-      videoEmbedUrl: z.string().optional(),
-      videoEmbedAlt: z.string().optional(),
-      techStacks: z.array(z.string()).optional()
+    schema: baseProjectSchema.extend({
+      imageUrl: baseProjectSchema.shape.imageUrl.unwrap(),
+      imageAlt: baseProjectSchema.shape.imageAlt.unwrap()
     })
   })
 });
@@ -38,21 +70,9 @@ var webApps = defineDocs({
   docs: defineCollections({
     type: "doc",
     dir: "features/about/content/web-apps",
-    schema: frontmatterSchema.extend({
-      title: z.string(),
-      description: z.string(),
-      category: z.string(),
-      fromDate: z.string(),
-      toDate: z.string(),
-      imageUrl: z.string(),
-      imageAlt: z.string(),
-      featured: z.boolean(),
-      showOnPortfolio: z.boolean().default(true),
-      websiteUrl: z.string().optional(),
-      githubUrl: z.string().optional(),
-      videoEmbedUrl: z.string().optional(),
-      videoEmbedAlt: z.string().optional(),
-      techStacks: z.array(z.string()).optional()
+    schema: baseProjectSchema.extend({
+      imageUrl: baseProjectSchema.shape.imageUrl.unwrap(),
+      imageAlt: baseProjectSchema.shape.imageAlt.unwrap()
     })
   })
 });
@@ -61,22 +81,7 @@ var projects = defineDocs({
   docs: defineCollections({
     type: "doc",
     dir: "features/projects/content",
-    schema: frontmatterSchema.extend({
-      title: z.string(),
-      description: z.string(),
-      category: z.string(),
-      fromDate: z.string(),
-      toDate: z.string(),
-      imageUrl: z.string().optional(),
-      imageAlt: z.string().optional(),
-      featured: z.boolean(),
-      showOnPortfolio: z.boolean().default(true),
-      websiteUrl: z.string().optional(),
-      githubUrl: z.string().optional(),
-      videoEmbedUrl: z.string().optional(),
-      videoEmbedAlt: z.string().optional(),
-      techStacks: z.array(z.string()).optional()
-    })
+    schema: baseProjectSchema
   })
 });
 var experience = defineDocs({
@@ -90,20 +95,7 @@ var blog = defineDocs({
   docs: defineCollections({
     type: "doc",
     dir: "features/blog/content",
-    schema: frontmatterSchema.extend({
-      title: z.string(),
-      description: z.string(),
-      created: z.string(),
-      lastUpdated: z.string().optional(),
-      image: z.string(),
-      imageAlt: z.string().optional(),
-      author: z.string().optional(),
-      authorAvatar: z.string().optional(),
-      authorAvatarAlt: z.string().optional(),
-      category: z.string().optional(),
-      tags: z.array(z.string()).optional(),
-      seo: z.array(z.string()).optional()
-    })
+    schema: blogPostSchema
   })
 });
 var privacy = defineDocs({
@@ -111,11 +103,7 @@ var privacy = defineDocs({
   docs: defineCollections({
     type: "doc",
     dir: "features/privacy/content",
-    schema: frontmatterSchema.extend({
-      title: z.string(),
-      description: z.string().optional(),
-      lastModified: z.union([z.string(), z.number(), z.date()]).optional()
-    })
+    schema: privacySchema
   })
 });
 var changelog = defineDocs({
@@ -123,11 +111,7 @@ var changelog = defineDocs({
   docs: defineCollections({
     type: "doc",
     dir: "features/changelog/content",
-    schema: frontmatterSchema.extend({
-      title: z.string(),
-      description: z.string(),
-      created: z.string()
-    })
+    schema: changelogSchema
   })
 });
 var source_config_default = defineConfig({

@@ -50,35 +50,8 @@ const CURRENT_PAGE = "Home"; // Define the current page for SEO configuration
 
 // SEO configuration
 const currentPageSEO = HEAD.find(
-  (page: HeadType) => page.page === CURRENT_PAGE,
+	(page: HeadType) => page.page === CURRENT_PAGE,
 ) as HeadType; // Get SEO configuration for the current page from the HEAD array
-
-// Utility functions
-const validateSEOConfig = () => {
-  // Validates SEO configuration to ensure all required fields are present
-  if (!HEAD || HEAD.length === 0) {
-    console.error("⚠️ HEAD configuration is missing or empty");
-  }
-  if (!KEYWORDS || KEYWORDS.length === 0) {
-    console.warn("🔍 No keywords defined for SEO");
-  }
-  if (!AUTHOR?.name) {
-    console.error("❌ Author information is missing");
-  }
-  if (!FAVICONS?.icon || FAVICONS.icon.length === 0) {
-    console.warn("🖼️ No favicons configured");
-  }
-  if (!OPEN_GRAPH) {
-    console.error("📱 OpenGraph configuration is missing");
-  } else if (!OPEN_GRAPH.image || !OPEN_GRAPH.twitterImage) {
-    console.warn("📱 OpenGraph images are missing");
-  }
-};
-
-// Initialize SEO validation
-if (process.env.NODE_ENV === "development") {
-  validateSEOConfig();
-}
 
 // Viewport configuration
 export const viewport: Viewport = {

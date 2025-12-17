@@ -1,10 +1,9 @@
 import Link from "next/link";
 import type {
-  AnchorHTMLAttributes,
-  FC,
-  HTMLAttributes,
-  ImgHTMLAttributes,
-  TableHTMLAttributes,
+	AnchorHTMLAttributes,
+	HTMLAttributes,
+	ImgHTMLAttributes,
+	TableHTMLAttributes,
 } from "react";
 import { Image as FrameworkImage } from "fumadocs-core/framework";
 import { Card, Cards } from "./card";

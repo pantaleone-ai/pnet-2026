@@ -1,4 +1,4 @@
-import Image, { getImageProps } from "next/image";
+import { getImageProps } from "next/image";
 import { Button } from "@/components/ui/button";
 import { SKILLS } from "@/features/home/data/skills";
 import { cn } from "@/lib/utils";

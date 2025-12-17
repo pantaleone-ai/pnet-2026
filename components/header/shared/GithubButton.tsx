@@ -12,13 +12,18 @@ export default function GithubButton() {
       try {
         const response = await fetch(
           `https://api.github.com/repos/${SOURCE_CODE_GITHUB_REPO}`,
+          {
+            // Add cache and error handling to prevent CORS/rate limit issues
+            cache: "force-cache",
+          },
         );
         if (response.ok) {
           const data = await response.json();
           setStargazersCount(data.stargazers_count || 0);
         }
       } catch (error) {
-        console.error("Failed to fetch GitHub stars", error);
+        // Silently fail - GitHub API may be rate-limited or blocked
+        // This is expected behavior and not a critical error
       }
     }
     fetchStars();
