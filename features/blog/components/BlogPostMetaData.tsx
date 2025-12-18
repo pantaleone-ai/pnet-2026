@@ -1,6 +1,6 @@
 import { getMinutes } from "@/features/blog/lib/get-minutes";
-import CalendarIcon from "@/features/common/icons/calendar-icon";
-import ClockIcon from "@/features/common/icons/clock-icon";
+import DateIcon from "@/features/common/icons/date-icon";
+import ReadingTimeIcon from "@/features/common/icons/reading-time-icon";
 import FolderIcon from "@/features/common/icons/folder-icon";
 import { cn } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
@@ -72,11 +72,11 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
         <InfoBarItem icon={FolderIcon} text={category} />
 
         <InfoBarItem
-          icon={CalendarIcon}
+          icon={DateIcon}
           text={format(parseISO(date), "MMM dd, yyyy")}
         />
 
-        <InfoBarItem icon={ClockIcon} text={getMinutes(readTime)} />
+        <InfoBarItem icon={ReadingTimeIcon} text={getMinutes(readTime)} />
       </div>
 
       {/* Mobile View */}
@@ -104,11 +104,11 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
         />
 
         <InfoBarItem
-          icon={CalendarIcon}
+          icon={DateIcon}
           text={format(parseISO(date), "MMM dd, yyyy")}
         />
 
-        <InfoBarItem icon={ClockIcon} text={getMinutes(readTime)} />
+        <InfoBarItem icon={ReadingTimeIcon} text={getMinutes(readTime)} />
       </div>
     </div>
   );

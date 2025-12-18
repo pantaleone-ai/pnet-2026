@@ -157,6 +157,7 @@ const BlogContent = ({
             </>
           )}
         </div>
+        <div className="flex w-full pb-2 flex-row items-center border-b border-dashed border-border-edge">
         <Link href={href} className="group/title">
           <CardTitle
             id={`card-title-${index}`}
@@ -165,6 +166,7 @@ const BlogContent = ({
             {item.title}
           </CardTitle>
         </Link>
+        </div>
       </CardHeader>
       <CardContent className="p-0">
         <CardDescription className="my-2 line-clamp-3 px-2 text-left text-sm text-muted-foreground">

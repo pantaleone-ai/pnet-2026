@@ -3,8 +3,9 @@ import Hero from "@/features/home/components/Hero";
 import HeadingTitle from "@/components/HeadingTitle";
 import ContactMe from "@/components/ContactMe";
 import FeaturedApps from "@/features/home/components/FeaturedApps";
-import Testimonials from "@/features/home/components/Testimonials";
+import { WhatPeopleSay } from "@/features/home/components/WhatPeopleSay";
 import { FaqSection } from "@/features/home/components/FAQ";
+import LatestBlogPosts from "@/features/home/components/LatestBlogPosts";
 
 export default function Home() {
   return (
@@ -23,12 +24,20 @@ export default function Home() {
       <SeparatorHorizontal short={true} />
       <FeaturedApps />
       <SeparatorHorizontal short={true} />
+            <SeparatorHorizontal short={true} />
+      <HeadingTitle
+        title="Latest Blog Posts"
+        textStyleClassName="text-2xl font-bold sm:text-3xl"
+      />
+      <SeparatorHorizontal short={true} />
+      <LatestBlogPosts />
+      <SeparatorHorizontal short={true} />
       <HeadingTitle
         title="What People Are Saying"
         textStyleClassName="text-2xl font-bold sm:text-3xl"
       />
       <SeparatorHorizontal short={true} />
-      <Testimonials />
+      <WhatPeopleSay />
       <SeparatorHorizontal />
       <HeadingTitle
         title="FAQ"
