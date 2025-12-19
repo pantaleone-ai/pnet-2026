@@ -216,7 +216,7 @@ const ProjectContent = ({
     <>
       <CardHeader className="gap-0 p-0">
         <CardTitle
-          id={`project-title-${index}`}
+          id={`card-title-${index}`}
           className="border-b border-dashed border-border-edge px-2 py-2 text-left text-lg/6 text-foreground"
         >
           {item.title}

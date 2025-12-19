@@ -104,7 +104,6 @@ export default function Hero({
             <img
               {...restDesktop}
               fetchPriority="high"
-              decoding="async"
               className="h-auto w-full object-cover lg:h-full"
               alt={imageAlt}
             />

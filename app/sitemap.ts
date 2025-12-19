@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { getBlogPosts } from "@/features/blog/data/blogSource";
 import { getBaseUrl } from "@/lib/helpers";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -43,5 +44,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...staticPages];
+  const blogPosts = getBlogPosts().map((post) => ({
+    url: getBaseUrl(`/blog/post/${post.slug}`),
+    lastModified: post.lastUpdated
+      ? new Date(post.lastUpdated)
+      : new Date(post.created || new Date()),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...blogPosts];
 }
