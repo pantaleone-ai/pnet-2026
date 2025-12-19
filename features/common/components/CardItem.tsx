@@ -25,14 +25,16 @@ type CardItemProps =
       index: number;
       type: "project";
       item: ProjectType;
+      sizes?: string;
     }
   | {
       index: number;
       type: "blog";
       item: BlogPostType;
+      sizes?: string;
     };
 
-export default function CardItem({ index, item, type }: CardItemProps) {
+export default function CardItem({ index, item, type, sizes }: CardItemProps) {
   const isBlog = type === "blog";
   const href = isBlog ? `/blog/${item.slug}` : undefined;
 
@@ -50,6 +52,7 @@ export default function CardItem({ index, item, type }: CardItemProps) {
         imageUrl={isBlog ? item.image : item.imageUrl}
         imageAlt={item.imageAlt || item.title}
         href={href}
+        sizes={sizes}
       />
 
       <div className="flex w-full items-stretch justify-between border-t border-dashed border-border-edge">
@@ -82,11 +85,13 @@ const CoverImage = ({
   imageUrl,
   imageAlt,
   href,
+  sizes,
 }: {
   index: number;
   imageUrl: string;
   imageAlt: string;
   href?: string;
+  sizes?: string;
 }) => {
   const content = (
     <BrowserWrapper>
@@ -97,7 +102,7 @@ const CoverImage = ({
           width={600}
           height={338}
           className="h-full w-full rounded-none object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes={sizes || "(max-width: 1023px) 100vw, 33vw"}
           priority={false}
         />
       </div>

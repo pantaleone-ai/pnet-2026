@@ -50,7 +50,12 @@ export default function Projects({ data }: { data: ProjectType[] }) {
           {data.map((item, index) => (
             <CarouselItem key={index} className="basis-full md:basis-1/2">
               <div className="h-full p-1">
-                <CardItem item={item} index={index} type="project" />
+                <CardItem
+                  item={item}
+                  index={index}
+                  type="project"
+                  sizes="(max-width: 767px) 100vw, 50vw"
+                />
               </div>
             </CarouselItem>
           ))}
