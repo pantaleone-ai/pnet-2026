@@ -23,9 +23,14 @@ const InfoBarItem: FC<InfoBarItemProps> = ({
   children,
 }) => {
   return (
-    <div className={cn("inline-flex items-center gap-2 px-6 py-4", className)}>
+    <div
+      className={cn(
+        "inline-flex items-center gap-2 px-6 py-2 sm:py-3",
+        className,
+      )}
+    >
       {Icon && (
-        <Icon className={cn("size-5", iconClassName)} aria-hidden="true" />
+        <Icon className={cn("size-6", iconClassName)} aria-hidden="true" />
       )}
       {children}
       <span className="text-sm">{text}</span>

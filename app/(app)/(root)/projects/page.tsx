@@ -38,10 +38,7 @@ export default async function ProjectsPage() {
   return (
     <>
       <SeparatorHorizontal borderTop={false} />
-      <HeadingTitle
-        title="PROJECTS"
-        textStyleClassName="text-2xl font-bold sm:text-3xl"
-      />
+      <HeadingTitle title="Projects" />
       <SeparatorHorizontal short={true} />
       <ProjectList />
       <SeparatorHorizontal short={true} />

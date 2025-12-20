@@ -3,20 +3,52 @@ import { DocsLayout } from "@/components/fuma/fuma-layout";
 import { DocsBody, DocsPage } from "@/components/fuma/fuma-page";
 import LastModified from "@/components/LastModified";
 import SeparatorHorizontal from "@/components/SeparatorHorizontal";
-import BlogPostDetailHeader from "@/features/blog/components/BlogPostHeader";
+import { SITE_INFO } from "@/config/seo/site";
+import { USER } from "@/config/user";
+import BlogPostMetaData from "@/features/blog/components/BlogPostMetaData";
 import BlogPostNavigation from "@/features/blog/components/BlogPostNavigation";
+import BlogPostTitle from "@/features/blog/components/BlogPostTitle";
 import { blogSource, getBlogPosts } from "@/features/blog/data/blogSource";
 import type { BlogPostFrontmatter } from "@/features/blog/types/BlogPostFrontmatter";
+import type { BlogPostType } from "@/features/blog/types/BlogPostType";
 import { getBaseUrl } from "@/lib/helpers";
 import { getMDXComponents } from "@/mdx-components";
 import type { MDXComponents } from "mdx/types";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { BlogPosting, WithContext } from "schema-dts";
+
+export async function generateStaticParams() {
+  const posts = getBlogPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 interface BlogPostPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+function getPageJsonLd(post: BlogPostType): WithContext<BlogPosting> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    image: post.image || `/og/simple?title=${encodeURIComponent(post.title)}`,
+    url: `${SITE_INFO.url}/blog/post/${post.slug}`,
+    datePublished: new Date(post.created).toISOString(),
+    dateModified: new Date(post.lastUpdated || post.created).toISOString(),
+    author: {
+      "@type": "Person",
+      name: USER.displayName,
+      identifier: USER.username,
+      image: USER.avatar,
+    },
+  };
 }
 
 export async function generateMetadata({
@@ -108,22 +140,44 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
 
   return (
     <>
-      <SeparatorHorizontal borderTop={false} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getPageJsonLd(post)).replace(/</g, "\\u003c"),
+        }}
+      />
+      <SeparatorHorizontal borderTop={false} short={true} />
       <main className="mx-auto flex flex-col">
         <BlogPostNavigation
           post={postWithoutBody}
           previous={prevPostWithoutBody}
           next={nextPostWithoutBody}
         />
-        <BlogPostDetailHeader
-          title={post.title}
-          date={date}
+        <SeparatorHorizontal short={true} />
+        <Image
+          alt={post.title}
+          src={post.image}
+          width={1000}
+          height={500}
+          className="h-auto max-h-96 w-full object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1000px"
+          priority
+        />
+        <SeparatorHorizontal short={true} />
+        <BlogPostMetaData
           authorImage={authorImage}
           authorName={authorName}
+          date={date}
           category={category}
           readTime={readTime}
-          imageUrl={post.image}
         />
+        <SeparatorHorizontal short={true} />
+        <BlogPostTitle
+          title={post.title}
+          textStyleClassName="text-2xl font-semibold md:text-3xl"
+          gridId="grid-blog-post-heading"
+        />
+        <SeparatorHorizontal short={true} />
         <div className="mx-auto w-full max-w-5xl">
           <DocsLayout tree={blogSource.pageTree}>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

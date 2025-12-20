@@ -7,13 +7,13 @@ interface HeadingTitleProps {
 }
 export default function HeadingTitle({
   title,
-  textStyleClassName = "text-3xl sm:text-4xl font-bold",
+  textStyleClassName = "text-2xl sm:text-3xl font-semibold",
   gridId = "grid-default",
 }: HeadingTitleProps) {
   return (
     <div
       className={cn(
-        "relative mx-auto flex w-full justify-center px-6 py-8 text-muted-foreground/20 md:py-4 lg:px-8",
+        "relative mx-auto flex w-full justify-center py-4 text-muted-foreground/20",
       )}
     >
       <svg

@@ -1,8 +1,7 @@
-import { getImageProps } from "next/image";
 import { Button } from "@/components/ui/button";
 import { SKILLS } from "@/features/home/data/skills";
 import { cn } from "@/lib/utils";
-import type { SkillType } from "@/features/home/types/SkillType";
+import { getImageProps } from "next/image";
 import Link from "next/link";
 import { IoCheckmarkCircle as CheckmarkIcon } from "react-icons/io5";
 
@@ -12,7 +11,7 @@ function HeroContent() {
       <p className="text-foreground px-4 text-2xl font-semibold tracking-tight sm:text-left sm:text-3xl hidden sm:block pb-2">
         HELLO
       </p>
-      <h1 className="text-foreground px-4 text-4xl font-semibold tracking-tight sm:text-5xl sm:text-left py-4">
+      <h1 className="text-foreground px-4 text-[32px] font-semibold tracking-tight sm:text-[40px] sm:text-left py-2">
         <span className="sm:hidden">Hello, </span>
         I&apos;m Tim
       </h1>
@@ -26,35 +25,34 @@ function HeroContent() {
         className="text-foreground space-y-2 divide-y divide-dashed divide-border-edge"
         aria-label="Skills and qualifications"
       >
-        {SKILLS.map((item: SkillType, index: number) => {
-          const itemId = item.name ? `${item.name}-${index}` : `item-${index}`;
-
-          return (
-            <li key={itemId} className="relative pl-11 last:mb-0 py-2">
-              <CheckmarkIcon
-                aria-hidden="true"
-                className={cn(
-                  "absolute left-4 size-5 text-muted-foreground/80",
-                  "top-1/2 -translate-y-1/2",
-                )}
-              />
-              <div className="flex flex-row gap-x-1">
-                {item.name && (
-                  <span className="text-foreground font-semibold">
-                    {item.name}:
-                  </span>
-                )}
-                <span className="text-foreground/80">{item.description}</span>
-              </div>
-            </li>
-          );
-        })}
+        {SKILLS.map((item, index) => (
+          <li
+            key={item.name || index}
+            className="relative py-2 pl-11 last:mb-0"
+          >
+            <CheckmarkIcon
+              aria-hidden="true"
+              className={cn(
+                "absolute left-4 size-5 text-muted-foreground/80",
+                "top-1/2 -translate-y-1/2",
+              )}
+            />
+            <div className="flex flex-row gap-x-1">
+              {item.name && (
+                <span className="font-semibold text-foreground">
+                  {item.name}:
+                </span>
+              )}
+              <span className="text-foreground/80">{item.description}</span>
+            </div>
+          </li>
+        ))}
       </ul>
 
-      <div className="px-4 text-left py-4">
+      <div className="px-4 py-4 text-left">
         <Button asChild>
-          <Link href="/about" className="w-full sm:w-fit py-4 px-6">
-            Learn more about Tim
+          <Link href="/about" className="w-full px-6 py-4 sm:w-auto">
+            Learn more
           </Link>
         </Button>
       </div>

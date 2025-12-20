@@ -39,13 +39,18 @@ const ContactMe = ({
         {showSocialLinks ? (
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {SOCIAL_LINKS.map((link) => (
-              <Button key={link.label} asChild variant="outline">
+              <Button
+                key={link.label}
+                asChild
+                variant="outline"
+                className="rounded-full"
+              >
                 <Link
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <link.icon className="mr-2 h-4 w-4" />
+                  <link.icon className="size-4" />
                   {link.label}
                 </Link>
               </Button>

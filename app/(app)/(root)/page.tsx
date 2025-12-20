@@ -17,32 +17,20 @@ export default function Home() {
         imageAlt="Professional headshot of Tim, a Frontend Developer based in San Francisco Bay Area"
       />
       <SeparatorHorizontal short={true} />
-      <HeadingTitle
-        title="Featured Apps"
-        textStyleClassName="text-2xl font-bold sm:text-3xl"
-      />
+      <HeadingTitle title="Featured Apps" />
       <SeparatorHorizontal short={true} />
       <FeaturedApps />
       <SeparatorHorizontal short={true} />
-            <SeparatorHorizontal short={true} />
-      <HeadingTitle
-        title="Latest Blog Posts"
-        textStyleClassName="text-2xl font-bold sm:text-3xl"
-      />
+      <SeparatorHorizontal short={true} />
+      <HeadingTitle title="Latest Blog Posts" />
       <SeparatorHorizontal short={true} />
       <LatestBlogPosts />
       <SeparatorHorizontal short={true} />
-      <HeadingTitle
-        title="What People Are Saying"
-        textStyleClassName="text-2xl font-bold sm:text-3xl"
-      />
+      <HeadingTitle title="What People Are Saying" />
       <SeparatorHorizontal short={true} />
       <WhatPeopleSay />
       <SeparatorHorizontal />
-      <HeadingTitle
-        title="FAQ"
-        textStyleClassName="text-2xl font-bold sm:text-3xl"
-      />
+      <HeadingTitle title="FAQ" />
       <SeparatorHorizontal short={true} />
       <FaqSection />
       <SeparatorHorizontal short={true} />

@@ -10,11 +10,6 @@ import type { SocialLinkType } from "@/types";
 
 const SOCIAL_LINKS: SocialLinkType[] = [
   {
-    href: "https://www.strava.com/athletes/128944314",
-    icon: StravaIcon,
-    label: "Strava",
-  },
-  {
     href: "mailto:hiretimsf@gmail.com",
     icon: EmailIcon,
     label: "Email",
@@ -38,6 +33,11 @@ const SOCIAL_LINKS: SocialLinkType[] = [
     href: "https://www.facebook.com/hiretimsf/",
     icon: FacebookIcon,
     label: "Facebook",
+  },
+  {
+    href: "https://www.strava.com/athletes/128944314",
+    icon: StravaIcon,
+    label: "Strava",
   },
 ];
 
