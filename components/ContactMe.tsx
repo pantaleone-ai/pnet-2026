@@ -1,23 +1,24 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import SOCIAL_LINKS from "@/config/socialLinks";
+import Image from "next/image";
 import Link from "next/link";
 
 interface ContactMeProps {
   className?: string;
-  email?: string;
   heading?: string;
   description?: string;
   buttonText?: string;
   imageAlt?: string;
+  showSocialLinks?: boolean;
 }
 
 const ContactMe = ({
   className = "",
-  email = "hiretimsf@gmail.com",
   heading = "Looking for a Frontend Developer?",
   description = "I'm available for in-person or remote work.",
   buttonText = "Contact Me",
   imageAlt = "Professional frontend developer ready to collaborate on projects",
+  showSocialLinks = false,
 }: ContactMeProps) => {
   return (
     <section
@@ -34,17 +35,29 @@ const ContactMe = ({
         <p className="text-white/80 mt-6 text-center text-lg/8 text-pretty sm:text-left sm:text-lg">
           {description}
         </p>
-        <div className="mt-6">
-          <Button asChild variant="outline">
-            <Link
-              href={`mailto:${email}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {buttonText}
-            </Link>
-          </Button>
-        </div>
+
+        {showSocialLinks ? (
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {SOCIAL_LINKS.map((link) => (
+              <Button key={link.label} asChild variant="outline">
+                <Link
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <link.icon className="mr-2 h-4 w-4" />
+                  {link.label}
+                </Link>
+              </Button>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-6">
+            <Button asChild variant="outline">
+              <Link href="/contact">{buttonText}</Link>
+            </Button>
+          </div>
+        )}
       </div>
       <div className="flex-none">
         <Image

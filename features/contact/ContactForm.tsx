@@ -16,10 +16,6 @@ import {
   type ContactFormValues,
 } from "@/features/contact/helpers/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  LoaderCircleIcon as LoadingIcon,
-  SendHorizonalIcon as SendIcon,
-} from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -143,15 +139,11 @@ export function ContactForm() {
         <div className="max-w-xl mx-auto items-center justify-center flex border-x border-border-edge border-dashed px-6 py-2">
           {/* Submit button with loading state */}
           <Button
+            variant="outline"
             type="submit"
             disabled={isSubmitting}
             className="max-w-xl w-full"
           >
-            {isSubmitting ? (
-              <LoadingIcon className="size-4 animate-spin" />
-            ) : (
-              <SendIcon className="size-4" />
-            )}
             {isSubmitting ? "Sending..." : "Send Message"}
           </Button>
         </div>

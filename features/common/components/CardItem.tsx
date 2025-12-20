@@ -247,7 +247,11 @@ const ProjectContent = ({
         {item.websiteUrl && item.websiteUrl !== "#" && (
           <div className="flex w-full border-b border-dashed border-border-edge px-2 py-2">
             <Button asChild className="w-full" variant="outline">
-              <Link href={item.websiteUrl}>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href={item.websiteUrl}
+              >
                 Live Demo
                 <span className="sr-only"> of {item.title}</span>
               </Link>
@@ -257,7 +261,11 @@ const ProjectContent = ({
         {item.githubUrl && (
           <div className="flex w-full px-2 py-2">
             <Button asChild className="w-full">
-              <Link href={item.githubUrl}>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href={item.githubUrl}
+              >
                 GitHub
                 <span className="sr-only"> repository for {item.title}</span>
               </Link>

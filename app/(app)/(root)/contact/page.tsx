@@ -5,6 +5,7 @@ import { getBaseUrl } from "@/lib/helpers";
 import type { HeadType } from "@/types";
 import type { Metadata } from "next";
 import { ContactForm } from "@/features/contact/ContactForm";
+import ContactMe from "@/components/ContactMe";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -48,6 +49,8 @@ export default async function ContactPage() {
           <ContactForm />
         </div>
       </main>
+      <SeparatorHorizontal short={true} />
+      <ContactMe showSocialLinks={true} />
       <SeparatorHorizontal borderBottom={false} />
     </>
   );
