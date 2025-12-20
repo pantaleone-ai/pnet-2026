@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SOURCE_CODE_GITHUB_REPO } from "@/config/seo/site";
+import { SOURCE_CODE_GITHUB_URL } from "@/config/seo/site";
 
 const defaultClass =
   "text-foreground hover:text-muted-foreground underline underline-offset-4 transition-colors";
@@ -13,7 +13,7 @@ const techLinks: { label: string; href: string }[] = [
   { label: "Geist", href: "https://vercel.com/font" },
   {
     label: "GitHub",
-    href: SOURCE_CODE_GITHUB_REPO,
+    href: SOURCE_CODE_GITHUB_URL,
   },
 ];
 
