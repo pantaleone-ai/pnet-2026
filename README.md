@@ -1,25 +1,66 @@
 # [hiretimsf.com](https://hiretimsf.com)
 
-A minimal portfolio to showcase my work as a Frontend Developer.
+A minimal portfolio and blog to showcase my work as a Frontend Developer.
 
 Check out the live site: [hiretimsf.com](https://hiretimsf.com)
 
+## Project Preview
+
+<div align="center">
+  <img src="docs/images/desktop-preview.png" alt="Desktop Preview" width="100%" />
+</div>
+
+<div align="center">
+  <img src="docs/images/mobile-preview.png" alt="Mobile Preview" width="30%" />
+</div>
+
 ## Overview
 
-### Stack
+### Tech Stack
 
-- Next.js 16
-- Tailwind CSS v4
-- shadcn/ui
-- Motion
-- Fumadocs
+- **Framework**: [Next.js 16](https://nextjs.org) (App Router, Turbopack)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com), [Radix UI](https://www.radix-ui.com)
+- **Animations**: [Motion](https://motion.dev)
+- **Content**: [Fumadocs](https://fumadocs.vercel.app) (MDX)
+- **State Management**: [Nuqs](https://nuqs.47ng.com) (URL state), [Jotai](https://jotai.org)
+- **Analytics**: [Vercel Analytics](https://vercel.com/analytics), [PostHog](https://posthog.com)
+- **Deployment**: [Vercel](https://vercel.com)
 
 ### Features
 
-- Clean & modern design
-- Light/Dark themes
-- SEO optimized ([JSON-LD schema](https://json-ld.org), sitemap, robots)
-- Analytics with [Vercel Analytics](https://vercel.com/analytics)
+- 🎨 **Modern Design**: Clean, minimal, and responsive UI with dark mode support.
+- ⚡ **High Performance**: Optimized for speed with Next.js App Router and server components.
+- 📱 **Mobile First**: Fully responsive layout ensuring great experience on all devices.
+- 🔍 **SEO Optimized**: Built-in SEO best practices, JSON-LD schema, sitemap, and robots.txt.
+- 📝 **MDX Blog**: Content management using Fumadocs with MDX support.
+
+## Architecture
+
+### Folder Structure
+
+```
+├── actions/        # Server actions
+├── app/            # Next.js App Router pages and layouts
+├── components/     # Reusable UI components
+├── config/         # Configuration files (site, SEO, navigation)
+├── features/       # Feature-based modules (blog, home, projects)
+├── hooks/          # Custom React hooks
+├── lib/            # Utility functions and libraries
+├── public/         # Static assets (images, fonts)
+├── scripts/        # Build and utility scripts
+├── styles/         # Global styles and Tailwind configuration
+└── types/          # TypeScript type definitions
+```
+
+## Performance
+
+This project is built with performance in mind:
+
+- **Core Web Vitals**: Optimized for LCP, FID, and CLS.
+- **Image Optimization**: Using `next/image` for automatic resizing and format serving.
+- **Font Optimization**: `next/font` for self-formatting Google Fonts.
+- **Bundle Analysis**: Regular checks to keep bundle size small.
 
 ## Development
 
@@ -71,10 +112,7 @@ The site will be available at [http://localhost:3000](http://localhost:3000).
 | `npm run lint`          | Run ESLint                      |
 | `npm run lint:fix`      | Fix ESLint errors               |
 | `npm run format:write`  | Format code with Prettier       |
-| `npm run format:check`  | Check code formatting           |
-| `npm run check-types`   | Type-check with TypeScript      |
 | `npm run validate-seo`  | Validate SEO configuration      |
-| `npm run audit`         | Check for security issues       |
 
 ## License
 
