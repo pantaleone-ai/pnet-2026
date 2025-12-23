@@ -104,7 +104,7 @@ const CoverImage = ({
           src={imageUrl || "/images/app-placeholder.jpg"}
           width={600}
           height={338}
-          className="h-full w-full rounded-none object-cover"
+          className="h-full w-full rounded-none object-cover dark:grayscale"
           sizes={sizes || "(max-width: 1023px) 100vw, 33vw"}
           priority={false}
         />

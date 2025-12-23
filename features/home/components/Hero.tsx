@@ -1,8 +1,12 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { SKILLS } from "@/features/home/data/skills";
 import { cn } from "@/lib/utils";
-import { getImageProps } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { IoCheckmarkCircle as CheckmarkIcon } from "react-icons/io5";
 
 function HeroContent() {
@@ -61,51 +65,66 @@ function HeroContent() {
 }
 
 type HeroProps = {
-  imageSrcDesktop: string;
-  imageSrcMobile: string;
-  imageAlt: string;
+  imageSrcDesktop?: string;
+  imageSrcDesktopDark?: string;
+  imageSrcMobile?: string;
+  imageSrcMobileDark?: string;
+  imageAlt?: string;
+};
+
+const DEFAULT_IMAGES = {
+  desktop: "/images/vertical-profile.jpg",
+  desktopDark: "/images/vertical-profile-dark.jpg",
+  mobile: "/images/horizontal-profile.jpg",
+  mobileDark: "/images/horizontal-profile-dark.jpg",
+  alt: "Professional headshot of Tim, a Frontend Developer based in San Francisco Bay Area",
 };
 
 export default function Hero({
-  imageSrcDesktop,
-  imageSrcMobile,
-  imageAlt,
+  imageSrcDesktop = DEFAULT_IMAGES.desktop,
+  imageSrcMobile = DEFAULT_IMAGES.mobile,
+  imageSrcDesktopDark = DEFAULT_IMAGES.desktopDark,
+  imageSrcMobileDark = DEFAULT_IMAGES.mobileDark,
+  imageAlt = DEFAULT_IMAGES.alt,
 }: HeroProps) {
-  const common = { alt: imageAlt, priority: true };
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const {
-    props: { srcSet: desktopSrcSet, ...restDesktop },
-  } = getImageProps({
-    ...common,
-    width: 600,
-    height: 712,
-    src: imageSrcDesktop,
-  });
+  useEffect(() => {
+    // eslint-disable-next-line
+    setMounted(true);
+  }, []);
 
-  const {
-    props: { srcSet: mobileSrcSet },
-  } = getImageProps({
-    ...common,
-    width: 600,
-    height: 400,
-    src: imageSrcMobile,
-  });
+  const isDark = mounted && resolvedTheme === "dark";
 
   return (
     <div className="mx-auto max-w-5xl lg:p-8">
       <div className="flex flex-col border-border-edge lg:grid lg:grid-cols-2 lg:gap-x-6 lg:border lg:border-dashed">
         {/* Image Section */}
         <div className="w-full lg:col-span-1">
-          <picture>
-            <source media="(min-width: 1024px)" srcSet={desktopSrcSet} />
-            <source media="(max-width: 1023px)" srcSet={mobileSrcSet} />
-            <img
-              {...restDesktop}
-              fetchPriority="high"
-              className="h-auto w-full object-cover aspect-4/3 md:aspect-auto lg:h-full"
+          {/* Desktop Image */}
+          <div className="hidden lg:block relative h-full w-full">
+            <Image
+              src={isDark ? imageSrcDesktopDark : imageSrcDesktop}
               alt={imageAlt}
+              width={600}
+              height={712}
+              priority
+              className="h-full w-full object-cover"
             />
-          </picture>
+          </div>
+
+          {/* Mobile Image */}
+          <div className="block lg:hidden relative w-full">
+            <Image
+              src={isDark ? imageSrcMobileDark : imageSrcMobile}
+              alt={imageAlt}
+              width={600}
+              height={400}
+              priority
+              className="h-auto w-full object-cover aspect-4/3 md:aspect-auto"
+            />
+          </div>
         </div>
 
         {/* Content Section */}

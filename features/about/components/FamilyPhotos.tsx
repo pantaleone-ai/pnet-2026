@@ -27,7 +27,7 @@ export default function FamilyPhotos() {
                 src={photo.src}
                 alt={photo.alt}
                 placeholder="blur"
-                className="h-auto w-full transition-transform hover:scale-105 rounded-xl object-cover"
+                className="h-auto w-full transition-transform hover:scale-105 rounded-xl object-cover dark:grayscale"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
@@ -42,7 +42,7 @@ export default function FamilyPhotos() {
                 alt={photo.alt}
                 fill
                 placeholder="blur"
-                className="object-contain"
+                className="object-contain dark:grayscale"
                 sizes="100vw"
               />
             </div>

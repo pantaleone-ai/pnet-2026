@@ -42,6 +42,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily" as const,
       priority: 0.9,
     },
+    {
+      url: getBaseUrl("/contact"),
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: getBaseUrl("/privacy"),
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: getBaseUrl("/changelog"),
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
   ];
 
   const blogPosts = getBlogPosts().map((post) => ({

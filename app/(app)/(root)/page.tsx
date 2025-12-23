@@ -11,11 +11,7 @@ export default function Home() {
   return (
     <>
       <SeparatorHorizontal borderTop={false} />
-      <Hero
-        imageSrcDesktop="/images/vertical-profile.jpg"
-        imageSrcMobile="/images/horizontal-profile.jpg"
-        imageAlt="Professional headshot of Tim, a Frontend Developer based in San Francisco Bay Area"
-      />
+      <Hero />
       <SeparatorHorizontal short={true} />
       <HeadingTitle title="Featured Apps" />
       <SeparatorHorizontal short={true} />
