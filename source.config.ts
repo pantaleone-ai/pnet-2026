@@ -1,7 +1,9 @@
+import { z } from "zod";
 import {
   defineCollections,
   defineDocs,
   defineConfig,
+  frontmatterSchema,
 } from "fumadocs-mdx/config";
 import lastModified from "fumadocs-mdx/plugins/last-modified";
 import {
@@ -25,6 +27,18 @@ export const featuredApps = defineDocs({
 
 export const about = defineDocs({
   dir: "features/about/content",
+  docs: defineCollections({
+    type: "doc",
+    dir: "features/about/content",
+    schema: frontmatterSchema.extend({
+      title: z.string(),
+      description: z.string().optional(),
+      imageUrl: z.string().optional(),
+      imageUrlDesktop: z.string().optional(),
+      imageUrlMobile: z.string().optional(),
+      imageAlt: z.string().optional(),
+    }),
+  }),
 });
 
 export const webApps = defineDocs({

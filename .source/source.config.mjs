@@ -1,8 +1,10 @@
 // source.config.ts
+import { z as z2 } from "zod";
 import {
   defineCollections,
   defineDocs,
-  defineConfig
+  defineConfig,
+  frontmatterSchema as frontmatterSchema2
 } from "fumadocs-mdx/config";
 import lastModified from "fumadocs-mdx/plugins/last-modified";
 
@@ -63,7 +65,19 @@ var featuredApps = defineDocs({
   })
 });
 var about = defineDocs({
-  dir: "features/about/content"
+  dir: "features/about/content",
+  docs: defineCollections({
+    type: "doc",
+    dir: "features/about/content",
+    schema: frontmatterSchema2.extend({
+      title: z2.string(),
+      description: z2.string().optional(),
+      imageUrl: z2.string().optional(),
+      imageUrlDesktop: z2.string().optional(),
+      imageUrlMobile: z2.string().optional(),
+      imageAlt: z2.string().optional()
+    })
+  })
 });
 var webApps = defineDocs({
   dir: "features/about/content/web-apps",

@@ -49,6 +49,8 @@ type MDXPageData = {
   title?: string;
   description?: string;
   imageUrl?: string;
+  imageUrlDesktop?: string;
+  imageUrlMobile?: string;
   imageAlt?: string;
   lastModified?: string | number | Date;
 };
@@ -60,7 +62,11 @@ export default async function AboutMePage() {
   const pageData = page.data as MDXPageData;
   const MDX = pageData.body;
   const title = pageData.title;
-  const imageUrl = pageData.imageUrl ?? "/images/horizontal-profile-about.jpg";
+  const defaultImage = "/images/horizontal-profile-about.jpg";
+  const imageUrlDesktop =
+    pageData.imageUrlDesktop ?? pageData.imageUrl ?? defaultImage;
+  const imageUrlMobile =
+    pageData.imageUrlMobile ?? pageData.imageUrl ?? defaultImage;
   const imageAlt =
     pageData.imageAlt ??
     "Professional headshot of Tim, a Frontend Developer with 5 years of experience";
@@ -70,14 +76,30 @@ export default async function AboutMePage() {
       <SeparatorHorizontal borderTop={false} />
       <main className="mx-auto flex flex-col">
         <div className="relative">
-          <Image
-            alt={imageAlt}
-            src={imageUrl}
-            width={1000}
-            height={500}
-            className="w-full object-cover aspect-4/3 md:aspect-auto md:h-auto md:max-h-96"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1000px"
-          />
+          {/* Mobile Image */}
+          <div className="md:hidden">
+            <Image
+              alt={imageAlt}
+              src={imageUrlMobile}
+              width={1000}
+              height={750}
+              className="aspect-4/3 w-full object-cover"
+              sizes="100vw"
+              priority
+            />
+          </div>
+          {/* Desktop Image */}
+          <div className="hidden md:block">
+            <Image
+              alt={imageAlt}
+              src={imageUrlDesktop}
+              width={1000}
+              height={500}
+              className="w-full object-cover md:h-auto md:max-h-96"
+              sizes="100vw"
+              priority
+            />
+          </div>
         </div>
         <SeparatorHorizontal short={true} />
         <Heading
