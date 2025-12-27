@@ -17,7 +17,6 @@ export default function Home() {
       <SeparatorHorizontal short={true} />
       <FeaturedApps />
       <SeparatorHorizontal short={true} />
-      <SeparatorHorizontal short={true} />
       <HeadingTitle title="Latest Blog Posts" />
       <SeparatorHorizontal short={true} />
       <LatestBlogPosts />
