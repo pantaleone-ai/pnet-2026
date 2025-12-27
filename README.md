@@ -22,12 +22,6 @@ Check out the live site: [hiretimsf.com](https://hiretimsf.com)
   <img src="docs/images/github-mobile-mockup.jpg" alt="Mobile Preview" width="100%" />
 </div>
 
-## 🧩 Components Preview
-
-<div align="center">
-  <img src="docs/images/github-components-mockup.jpg" alt="Components Preview" width="100%" />
-</div>
-
 ## 📱 Mobile-First Responsive Design
 
 <div align="center">
