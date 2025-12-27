@@ -1,4 +1,4 @@
-# [hiretimsf.com](https://hiretimsf.com)
+# [HireTimSF.com](https://hiretimsf.com)
 
 A minimal portfolio and blog to showcase my work as a Frontend Developer.
 
@@ -9,9 +9,15 @@ Check out the live site: [hiretimsf.com](https://hiretimsf.com)
 <div align="center">
   <img src="docs/images/github-heading.jpg" alt="Desktop Preview" width="100%" />
 </div>
+
+## Desktop Preview
+
 <div align="center">
   <img src="docs/images/github-desktop-mockup.jpg" alt="Desktop Preview" width="100%" />
 </div>
+
+## Mobile Preview
+
 <div align="center">
   <img src="docs/images/github-mobile-mockup.jpg" alt="Mobile Preview" width="100%" />
 </div>
