@@ -11,17 +11,17 @@ import * as __fd_glob_25 from "../features/about/content/web-apps/portfolio-webs
 import * as __fd_glob_24 from "../features/about/content/web-apps/portfolio-website-v0.mdx?collection=webApps"
 import * as __fd_glob_23 from "../features/about/content/web-apps/full-stack-blog-app.mdx?collection=webApps"
 import * as __fd_glob_22 from "../features/projects/content/tshirt-design-app.mdx?collection=projects"
-import * as __fd_glob_21 from "../features/projects/content/sign-language.mdx?collection=projects"
-import * as __fd_glob_20 from "../features/projects/content/renewable-energy-project.mdx?collection=projects"
-import * as __fd_glob_19 from "../features/projects/content/project-marketing-materials.mdx?collection=projects"
-import * as __fd_glob_18 from "../features/projects/content/product-landing-page.mdx?collection=projects"
-import * as __fd_glob_17 from "../features/projects/content/portfolio-website-v3.mdx?collection=projects"
-import * as __fd_glob_16 from "../features/projects/content/portfolio-website-v2.mdx?collection=projects"
-import * as __fd_glob_15 from "../features/projects/content/portfolio-website-v1.mdx?collection=projects"
-import * as __fd_glob_14 from "../features/projects/content/portfolio-website-v0.mdx?collection=projects"
-import * as __fd_glob_13 from "../features/projects/content/portfolio-app-kotlin.mdx?collection=projects"
-import * as __fd_glob_12 from "../features/projects/content/portfolio-app-java.mdx?collection=projects"
-import * as __fd_glob_11 from "../features/projects/content/local-market-place-app.mdx?collection=projects"
+import * as __fd_glob_21 from "../features/projects/content/renewable-energy-project.mdx?collection=projects"
+import * as __fd_glob_20 from "../features/projects/content/project-marketing-materials.mdx?collection=projects"
+import * as __fd_glob_19 from "../features/projects/content/product-landing-page.mdx?collection=projects"
+import * as __fd_glob_18 from "../features/projects/content/portfolio-website-v3.mdx?collection=projects"
+import * as __fd_glob_17 from "../features/projects/content/portfolio-website-v2.mdx?collection=projects"
+import * as __fd_glob_16 from "../features/projects/content/portfolio-website-v1.mdx?collection=projects"
+import * as __fd_glob_15 from "../features/projects/content/portfolio-website-v0.mdx?collection=projects"
+import * as __fd_glob_14 from "../features/projects/content/portfolio-app-kotlin.mdx?collection=projects"
+import * as __fd_glob_13 from "../features/projects/content/portfolio-app-java.mdx?collection=projects"
+import * as __fd_glob_12 from "../features/projects/content/local-market-place-app.mdx?collection=projects"
+import * as __fd_glob_11 from "../features/projects/content/lazy-panda.mdx?collection=projects"
 import * as __fd_glob_10 from "../features/projects/content/full-stack-blog-app.mdx?collection=projects"
 import * as __fd_glob_9 from "../features/privacy/content/privacy.mdx?collection=privacy"
 import * as __fd_glob_8 from "../features/home/content/featured-apps/portfolio-website-v3.mdx?collection=featuredApps"
@@ -121,6 +121,6 @@ export const featuredApps = await create.docs("featuredApps", "features/home/con
 
 export const privacy = await create.docs("privacy", "features/privacy/content", {}, {"privacy.mdx": __fd_glob_9, });
 
-export const projects = await create.docs("projects", "features/projects/content", {}, {"full-stack-blog-app.mdx": __fd_glob_10, "local-market-place-app.mdx": __fd_glob_11, "portfolio-app-java.mdx": __fd_glob_12, "portfolio-app-kotlin.mdx": __fd_glob_13, "portfolio-website-v0.mdx": __fd_glob_14, "portfolio-website-v1.mdx": __fd_glob_15, "portfolio-website-v2.mdx": __fd_glob_16, "portfolio-website-v3.mdx": __fd_glob_17, "product-landing-page.mdx": __fd_glob_18, "project-marketing-materials.mdx": __fd_glob_19, "renewable-energy-project.mdx": __fd_glob_20, "sign-language.mdx": __fd_glob_21, "tshirt-design-app.mdx": __fd_glob_22, });
+export const projects = await create.docs("projects", "features/projects/content", {}, {"full-stack-blog-app.mdx": __fd_glob_10, "lazy-panda.mdx": __fd_glob_11, "local-market-place-app.mdx": __fd_glob_12, "portfolio-app-java.mdx": __fd_glob_13, "portfolio-app-kotlin.mdx": __fd_glob_14, "portfolio-website-v0.mdx": __fd_glob_15, "portfolio-website-v1.mdx": __fd_glob_16, "portfolio-website-v2.mdx": __fd_glob_17, "portfolio-website-v3.mdx": __fd_glob_18, "product-landing-page.mdx": __fd_glob_19, "project-marketing-materials.mdx": __fd_glob_20, "renewable-energy-project.mdx": __fd_glob_21, "tshirt-design-app.mdx": __fd_glob_22, });
 
 export const webApps = await create.docs("webApps", "features/about/content/web-apps", {}, {"full-stack-blog-app.mdx": __fd_glob_23, "portfolio-website-v0.mdx": __fd_glob_24, "portfolio-website-v1.mdx": __fd_glob_25, "portfolio-website-v2.mdx": __fd_glob_26, "portfolio-website-v3.mdx": __fd_glob_27, });

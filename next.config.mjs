@@ -25,6 +25,10 @@ const config = {
         protocol: "https",
         hostname: "img.youtube.com",
       },
+      {
+        protocol: "https",
+        hostname: "unavatar.io",
+      },
     ],
   },
   async headers() {
