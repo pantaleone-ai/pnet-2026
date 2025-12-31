@@ -16,10 +16,10 @@ import {
   CollapsibleTrigger,
 } from "fumadocs-ui/components/ui/collapsible";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
-import { useNav, usePageStyles } from "fumadocs-ui/contexts/layout";
+import { useNav, usePageStyles } from "./layout-context";
 import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
-import { cn } from "fumadocs-ui/utils/cn";
-import { isActive } from "fumadocs-ui/utils/is-active";
+import { cn } from "@/lib/utils";
+import { isActive } from "@/lib/utils";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   type ComponentProps,

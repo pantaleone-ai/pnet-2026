@@ -1,6 +1,7 @@
 "use client";
 
-import { searchPosts, type SearchResult } from "@/actions/search";
+import { searchPosts } from "@/actions/search";
+import type { SearchResult } from "@/types/search";
 import { useDebounce } from "@/hooks/useDebounce";
 import { trackEvent } from "@/lib/events";
 import { highlightMatches, renderMarkdownContent } from "@/lib/search";

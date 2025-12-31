@@ -1,8 +1,8 @@
 import type * as PageTree from "fumadocs-core/page-tree";
-import { type PageStyles, StylesProvider } from "fumadocs-ui/contexts/layout";
+import { type PageStyles, StylesProvider } from "./layout-context";
 import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { cn } from "fumadocs-ui/utils/cn";
+import { cn } from "@/lib/utils";
 import type { HTMLAttributes, ReactNode } from "react";
 
 export interface DocsLayoutProps extends BaseLayoutProps {

@@ -1,7 +1,7 @@
 import type { TableOfContents } from "fumadocs-core/toc";
 import { AnchorProvider, type AnchorProviderProps } from "fumadocs-core/toc";
 import { I18nLabel } from "fumadocs-ui/contexts/i18n";
-import { cn } from "fumadocs-ui/utils/cn";
+import { cn } from "@/lib/utils";
 import { Edit, Text } from "lucide-react";
 import { type ComponentProps, forwardRef, lazy, type ReactNode } from "react";
 import { buttonVariants } from "@/components/ui/button";
@@ -19,8 +19,10 @@ import {
 } from "./fuma-page-client";
 import { TOCItems, type TOCProps, TOCScrollArea, Toc } from "./fuma-toc";
 
-const ClerkTOCItems = lazy(
-  () => import("fumadocs-ui/components/layout/toc-clerk"),
+const ClerkTOCItems = lazy(() =>
+  import("fumadocs-ui/components/toc/clerk").then((mod) => ({
+    default: mod.TOCItems,
+  })),
 );
 
 function slot<T extends { enabled?: boolean; component?: ReactNode }>(

@@ -1,12 +1,6 @@
 import { getBlogPosts } from "@/features/blog/data/blogSource";
-import type { BlogPostType } from "@/features/blog/types/BlogPostType";
+import type { SearchResult } from "@/types/search";
 import { levenshtein } from "./helpers";
-
-export type SerializableBlogPostType = Omit<BlogPostType, "body">;
-
-export interface SearchResult extends SerializableBlogPostType {
-  score: number;
-}
 
 /**
  * Function to get all posts by search query.

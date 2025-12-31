@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 import type { TOCItemType } from "fumadocs-core/toc";
 import * as Primitive from "fumadocs-core/toc";
-import { TocThumb } from "fumadocs-ui/components/layout/toc-thumb";
+import { TocThumb } from "fumadocs-ui/components/toc/index";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
-import { usePageStyles } from "fumadocs-ui/contexts/layout";
-import { cn } from "fumadocs-ui/utils/cn";
+import { usePageStyles } from "./layout-context";
+import { cn } from "@/lib/utils";
 import {
   type ComponentProps,
   type HTMLAttributes,
@@ -49,7 +49,7 @@ export function Toc(props: HTMLAttributes<HTMLDivElement>) {
       id="nd-toc"
       {...(props as ComponentProps<typeof motion.div>)}
       className={cn(
-        "sticky top-[calc(var(--fd-banner-height)+var(--fd-nav-height))] h-(--fd-toc-height) pb-2 pl-4 border-l border-border-edge border-dashed bg-accent/20 dark:bg-accent/10",
+        "sticky top-[calc(var(--fd-banner-height,0px)+var(--fd-nav-height,0px))] h-(--fd-toc-height) pb-2 pl-4 border-l border-border-edge border-dashed bg-accent/20 dark:bg-accent/10",
         toc,
         props.className,
       )}
@@ -59,7 +59,7 @@ export function Toc(props: HTMLAttributes<HTMLDivElement>) {
         {
           ...props.style,
           "--fd-toc-height":
-            "calc(100dvh - var(--fd-banner-height) - var(--fd-nav-height))",
+            "calc(100dvh - var(--fd-banner-height,0px) - var(--fd-nav-height,0px))",
         } as object
       }
     >
