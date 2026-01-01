@@ -39,10 +39,8 @@ const SiteHeader: FC<Props> = () => {
     <>
       <header
         className={cn(
-          "z-50 w-full border-y border-edge bg-background transition-transform",
-          mobileMenuOpen || isFixed
-            ? "fixed top-0 inset-x-0 z-[100]"
-            : "sticky top-0",
+          "w-full border-y border-edge bg-background transition-transform fixed top-0 inset-x-0",
+          mobileMenuOpen || isFixed ? "z-100" : "z-50",
         )}
         style={{
           WebkitBackfaceVisibility: "hidden",
@@ -67,9 +65,7 @@ const SiteHeader: FC<Props> = () => {
         </div>
         {showProgressBar && <ProgressBar />}
       </header>
-      {(mobileMenuOpen || isFixed) && (
-        <div className="h-18" aria-hidden="true" />
-      )}
+      <div className="h-18" aria-hidden="true" />
     </>
   );
 };
