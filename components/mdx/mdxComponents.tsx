@@ -147,6 +147,24 @@ const defaultMdxComponents = {
   h6: (props: HTMLAttributes<HTMLHeadingElement>) => (
     <Heading as="h6" {...props} />
   ),
+  strong: (props: HTMLAttributes<HTMLElement>) => (
+    <strong
+      className={cn(
+        "font-medium text-foreground dark:text-white",
+        props.className,
+      )}
+      {...props}
+    />
+  ),
+  code: (props: HTMLAttributes<HTMLElement>) => (
+    <code
+      className={cn(
+        "bg-muted/50 px-[0.3rem] py-[0.2rem] rounded font-mono text-sm font-medium text-foreground dark:bg-white/10 dark:text-white border border-border/50",
+        props.className,
+      )}
+      {...props}
+    />
+  ),
 
   table: Table,
   Callout,

@@ -342,6 +342,12 @@
 }
 
 @layer components {
+  /* Inline code styling - Remove backticks added by typography plugin */
+  :not(pre) > code::before,
+  :not(pre) > code::after {
+    content: none !important;
+  }
+
   [data-rehype-pretty-code-figure] {
     @apply relative my-[1.25em] rounded-xl bg-code text-code-foreground;
 
@@ -349,8 +355,9 @@
       @apply overflow-x-auto overscroll-x-none px-4 py-4 has-data-line-numbers:px-0;
     }
 
+    /* Reset styles for code inside code blocks to avoid double styling */
     code {
-      @apply font-mono text-sm;
+      @apply font-mono text-sm bg-transparent p-0 border-none text-inherit dark:bg-transparent dark:text-inherit;
     }
   }
 
