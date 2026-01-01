@@ -1,4 +1,4 @@
-# Portfolio Version 4 [Live Demo](https://hiretimsf.com)
+# Portfolio Version 4 | [Live Demo](https://hiretimsf.com)
 
 A minimal portfolio and blog to showcase my work as a Frontend Developer.
 
