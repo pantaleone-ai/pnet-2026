@@ -29,6 +29,12 @@ const config = {
         protocol: "https",
         hostname: "unavatar.io",
       },
+      {
+        protocol: 'https',
+        hostname: 'pantaleone-net.s3.us-west-1.amazonaws.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   async headers() {
