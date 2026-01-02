@@ -7,7 +7,7 @@ import { frontmatterSchema } from "fumadocs-mdx/config";
  */
 export const baseProjectSchema = frontmatterSchema.extend({
   title: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
   category: z.string(),
   fromDate: z.string().optional(),
   toDate: z.string().optional(),
