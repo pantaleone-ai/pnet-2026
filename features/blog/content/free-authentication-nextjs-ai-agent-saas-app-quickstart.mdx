@@ -136,7 +136,7 @@ npx drizzle-kit push
 This is the brain of the operation. We initialize Better-Auth with our database adapter and providers.
 
 Create src/lib/auth.ts:
-```TypeScript
+```typescript
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/db"; // Your drizzle db instance
@@ -171,7 +171,7 @@ We need to expose the auth endpoints so the client can talk to the server. Next.
 
 Create src/app/api/auth/[...all]/route.ts:
 
-```TypeScript
+```typescript
 import { auth } from "@/lib/auth";
 import { toNextJsHandler } from "better-auth/next-js";
  
@@ -185,7 +185,7 @@ Now, let's make it usable for the user. We need a client-side hook to interact w
 
 Create a robust client helper src/lib/auth-client.ts:
 
-```TypeScript
+```typescript
 import { createAuthClient } from "better-auth/react"
  
 export const authClient = createAuthClient({
@@ -245,7 +245,7 @@ You can't trust the client. You must protect your routes at the edge.
 
 Create middleware.ts:
 
-```TypeScript
+```typescript
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth";
  
