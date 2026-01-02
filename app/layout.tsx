@@ -8,61 +8,65 @@ import type { Person, WebSite, WithContext } from "schema-dts";
 import ConsentManager from "@/components/ConsentManager";
 import { Providers } from "@/components/Providers";
 import { SkipToMain } from "@/components/SkipToMain";
-import { AUTHOR, FAVICONS, HEAD, KEYWORDS, OPEN_GRAPH } from "@/config/seo";
-import { SITE_INFO } from "@/config/seo/site";
-import { META_THEME_COLORS } from "@/config/theme";
+
+// --- CHANGED: Now importing from your new unified config ---
+import { siteConfig } from "@/config/site";
+import { META_THEME_COLORS } from "@/config/theme"; // Assuming you kept the theme config
 import { fontMono, fontSans } from "@/lib/fonts";
 import { getBaseUrl } from "@/lib/helpers";
-import type { HeadType } from "@/types";
 
-// Type definitions
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-// Generates JSON-LD structured data for the website
+// 1. JSON-LD: Website Definition
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: SITE_INFO.name,
-    url: SITE_INFO.url,
-    alternateName: [SITE_INFO.alternateName],
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    author: {
+      "@type": "Person",
+      name: siteConfig.name,
+    },
   };
 }
 
-// Generates JSON-LD structured data for the person/professional
+// 2. JSON-LD: Person/Professional Definition (Updated for AI/Architecture)
 function getPersonJsonLd(): WithContext<Person> {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: AUTHOR.name,
-    url: SITE_INFO.url,
-    image: OPEN_GRAPH.image,
-    jobTitle: "Frontend Developer",
-    description:
-      "Frontend Developer specializing in React, Next.js, and modern web technologies",
-    sameAs: [AUTHOR.twitterUrl, AUTHOR.githubUrl].filter(Boolean),
+    name: siteConfig.name,
+    url: siteConfig.url,
+    image: siteConfig.ogImage,
+    jobTitle: "Senior Systems Architect",
+    description: siteConfig.description,
+    sameAs: [
+      siteConfig.links.twitter,
+      siteConfig.links.github,
+      siteConfig.links.linkedin,
+    ].filter(Boolean),
     knowsAbout: [
-      "React",
-      "Next.js",
+      "Next.js 16",
+      "React Server Components",
+      "AI Systems Architecture",
       "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
-      "Web Development",
-      "Frontend Development",
+      "Agentic Workflows",
+      "System Design",
     ],
   };
 }
 
-// Script to handle initial theme state and macOS detection to prevent flashing of the wrong theme.
+// Script to handle initial theme state (prevents flash of wrong theme)
 const darkModeScript = `
   try {
     if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
     }
   } catch (_) {}
-
   try {
     if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
       document.documentElement.classList.add('os-macos')
@@ -70,109 +74,60 @@ const darkModeScript = `
   } catch (_) {}
 `;
 
-// Constants
-const CURRENT_PAGE = "Home"; // Define the current page for SEO configuration
-
-// SEO configuration
-const currentPageSEO = HEAD.find(
-  (page: HeadType) => page.page === CURRENT_PAGE,
-) as HeadType; // Get SEO configuration for the current page from the HEAD array
-
-// Viewport configuration
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: META_THEME_COLORS.light,
 };
 
-// Metadata configuration
+// 3. Metadata Configuration (Connected to siteConfig)
 export const metadata: Metadata = {
-  // Basic metadata
-  title: currentPageSEO?.title,
-  generator: AUTHOR.name,
-  applicationName: currentPageSEO?.title,
-  description: currentPageSEO?.description,
-  referrer: "origin-when-cross-origin",
-  keywords: (KEYWORDS ?? []).join(", "),
-
-  // Author information
-  authors: [
-    {
-      name: AUTHOR.name,
-      url: AUTHOR.twitterUrl,
-    },
-  ],
-  creator: AUTHOR.name,
-  publisher: AUTHOR.name,
-
-  // URL configurations
-  metadataBase: new URL(getBaseUrl()),
-  alternates: {
-    canonical: getBaseUrl(),
-    types: {
-      "application/rss+xml": `${getBaseUrl("/rss.xml")}`,
-    },
-    languages: {
-      "en-US": getBaseUrl(),
-      "x-default": getBaseUrl(),
-    },
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  metadataBase: new URL(siteConfig.url),
+  generator: "Next.js 16",
+  keywords: siteConfig.keywords,
+  authors: [{ name: "Pantaleone", url: siteConfig.links.twitter }],
+  creator: "Pantaleone",
 
-  // Apple web app configuration
-  appleWebApp: {
-    title: currentPageSEO?.title ?? "",
-    statusBarStyle: "default",
-    capable: true,
-  },
-
-  // Search engine configuration
-  robots: {
-    index: true,
-    follow: true,
-  },
-
-  // Favicon configuration
-  icons: FAVICONS,
-
-  // OpenGraph metadata for social media sharing
+  // OpenGraph
   openGraph: {
     type: "website",
-    locale: "en",
-    url: getBaseUrl(),
-    title: currentPageSEO?.title,
-    description: currentPageSEO?.description,
-    siteName: currentPageSEO?.title,
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
     images: [
       {
-        url: OPEN_GRAPH.image,
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: currentPageSEO?.title ?? "",
-        type: "image/png",
+        alt: siteConfig.name,
       },
     ],
   },
 
-  // Twitter card metadata
+  // Twitter
   twitter: {
     card: "summary_large_image",
-    title: currentPageSEO?.title,
-    description: currentPageSEO?.description,
-    site: AUTHOR.twitterAddress,
-    images: [
-      {
-        url: OPEN_GRAPH.twitterImage,
-        width: 1200,
-        height: 675,
-        alt: currentPageSEO?.title,
-        type: "image/png",
-      },
-    ],
-    creator: AUTHOR.twitterAddress,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+    creator: "@pantaleone_ai",
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 
-// Root layout component
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
@@ -182,31 +137,28 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <head>
         <script
-          type="text/javascript"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Injecting script for theme handling
           dangerouslySetInnerHTML={{ __html: darkModeScript }}
         />
-        {/*
-          Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
-          since we found the regular `<script>` tag to not execute when rendering a not-found page.
-         */}
-        <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
+          src={`data:text/javascript;base64,${btoa(darkModeScript)}`}
+        />
+        {/* Inject JSON-LD */}
         <script
           type="application/ld+json"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Injecting JSON-LD for SEO
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(getWebSiteJsonLd()),
           }}
         />
         <script
           type="application/ld+json"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Injecting JSON-LD for SEO
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getPersonJsonLd()).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(getPersonJsonLd()),
           }}
         />
       </head>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="min-h-screen bg-background font-sans antialiased">
         <SkipToMain />
         <Providers>
           <NuqsAdapter>
