@@ -80,7 +80,7 @@ const browserCollections = {
   experience: create.doc("experience", {"experience.mdx": () => import("../features/experience/content/experience.mdx?collection=experience"), }),
   featuredApps: create.doc("featuredApps", {}),
   privacy: create.doc("privacy", {"privacy.mdx": () => import("../features/privacy/content/privacy.mdx?collection=privacy"), }),
-  projects: create.doc("projects", {"mixphd.mdx": () => import("../features/projects/content/mixphd.mdx?collection=projects"), "pantaleonenet.mdx": () => import("../features/projects/content/pantaleonenet.mdx?collection=projects"), "profitsignals-ai-chat-agent.mdx": () => import("../features/projects/content/profitsignals-ai-chat-agent.mdx?collection=projects"), "qrcode-generator-free-nextjs15-tailwind.mdx": () => import("../features/projects/content/qrcode-generator-free-nextjs15-tailwind.mdx?collection=projects"), "skillsnap-increase-ai-skills.mdx": () => import("../features/projects/content/skillsnap-increase-ai-skills.mdx?collection=projects"), }),
+  projects: create.doc("projects", {}),
   webApps: create.doc("webApps", {"full-stack-blog-app.mdx": () => import("../features/about/content/web-apps/full-stack-blog-app.mdx?collection=webApps"), "portfolio-website-v1.mdx": () => import("../features/about/content/web-apps/portfolio-website-v1.mdx?collection=webApps"), "portfolio-website-v2.mdx": () => import("../features/about/content/web-apps/portfolio-website-v2.mdx?collection=webApps"), "portfolio-website-v3.mdx": () => import("../features/about/content/web-apps/portfolio-website-v3.mdx?collection=webApps"), }),
 };
 export default browserCollections;
