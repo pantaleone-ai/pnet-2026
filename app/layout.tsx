@@ -13,7 +13,7 @@ import { SkipToMain } from "@/components/SkipToMain";
 import { siteConfig } from "@/config/site";
 import { META_THEME_COLORS } from "@/config/theme"; // Assuming you kept the theme config
 import { fontMono, fontSans } from "@/lib/fonts";
-import { getBaseUrl } from "@/lib/helpers";
+// import { getBaseUrl } from "@/lib/helpers";
 
 interface RootLayoutProps {
   children: React.ReactNode;
